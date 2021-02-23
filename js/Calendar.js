@@ -5,6 +5,16 @@ let month = date.getMonth() + 1
 const config = {
     show: 3,
 }
+const Index = {
+    Project: 0,
+    Sunday: 1,
+    Monday: 2,
+    Tuesday: 3,
+    Wednesday: 4,
+    Thursday: 5,
+    Friday: 6,
+    Saturday: 7,
+}
 
 function createCalendar(year, month) {
     const weeks = ['Project', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
@@ -18,7 +28,6 @@ function createCalendar(year, month) {
     let dayCount = 1
     let calendarHtml = ''
     let finishMonth = false
-    let holidayCount = 0
     
     calendarHtml += '<h1>' + year  + '/' + month + '</h1>'
     calendarHtml += '<table>'
@@ -28,7 +37,7 @@ function createCalendar(year, month) {
     
     for (let w = 0; ; w++) {
         calendarHtml += '<tr><td></td>'
-        for (let d = 1; d < weeks.length; d++) {
+        for (let d = Index.Sunday; d < weeks.length; d++) {
             if (w == 0 && d < startDay + 1) {
                 let num = lastMonthEndDayCount - startDay + d
                 calendarHtml += '<td class="is-disabled">' + num + '</td>'
@@ -37,10 +46,16 @@ function createCalendar(year, month) {
                 calendarHtml += '<td class="is-disabled">' + num + '</td>'
                 finishMonth = true
                 dayCount++
-            } else {
-                if (Holiday[holidayCount].year === year && Holiday[holidayCount].month === month && Holiday[holidayCount].day === dayCount) {
+            } else if ((d === Index.Sunday) || (d === Index.Saturday)) {
+                if (isWorkDay(year, month, dayCount)) {
+                    calendarHtml += '<td>' + dayCount + '</td>'
+                } else {
                     calendarHtml += '<td class="is-holiday">' + dayCount + '</td>'
-                    holidayCount++
+                }
+                dayCount++
+            } else {
+                if (isHoliday(year, month, dayCount)) {
+                    calendarHtml += '<td class="is-holiday">' + dayCount + '</td>'
                 } else {
                     calendarHtml += '<td>' + dayCount + '</td>'
                 }
