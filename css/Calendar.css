@@ -20,3 +20,7 @@ td:nth-child(1) {
 td:last-child {
     color: royalblue;
 }
+
+td.is-disabled {
+    color: #ccc;
+}

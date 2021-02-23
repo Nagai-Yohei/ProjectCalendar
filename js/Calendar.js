@@ -12,6 +12,9 @@ const startDay = startDate.getDay()
 const endDate = new Date(year, month,  0)
 const endDayCount = endDate.getDate()
 
+const lastMonthEndDate = new Date(year, month-1, 0)
+const lastMonthEndDayCount = lastMonthEndDate.getDate()
+
 
 let dayCount = 1
 let calendarHtml = ''
@@ -34,17 +37,22 @@ calendarHtml += GetYearAndMonth(year, month)
 calendarHtml += '<table>'
 calendarHtml += GetDayOfWeekTable()
 
+const tdOtherMonth = '<td class="is-other-month">'
+
 for (let w = 0; ; w++) {
     calendarHtml += '<tr>'
 
     for (let d = 0; d < 7; d++) {
         if (w == 0 && d < startDay) {
             // 1行目で1日の曜日の前
-            calendarHtml += '<td></td>'
+            let num = lastMonthEndDayCount - startDay + d + 1
+            calendarHtml += '<td class="is-disabled">' + num + '</td>'
         } else if (dayCount > endDayCount) {
             // 末尾の日数を超えた
-            calendarHtml += '<td></td>'
+            let num = dayCount - endDayCount
+            calendarHtml += '<td class="is-disabled">' + num + '</td>'
             finishMonth = true
+            dayCount++
         } else {
             calendarHtml += '<td>' + dayCount + '</td>'
             dayCount++
