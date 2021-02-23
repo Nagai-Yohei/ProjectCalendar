@@ -18,6 +18,7 @@ function createCalendar(year, month) {
     let dayCount = 1
     let calendarHtml = ''
     let finishMonth = false
+    let holidayCount = 0
     
     calendarHtml += '<h1>' + year  + '/' + month + '</h1>'
     calendarHtml += '<table>'
@@ -37,7 +38,12 @@ function createCalendar(year, month) {
                 finishMonth = true
                 dayCount++
             } else {
-                calendarHtml += '<td>' + dayCount + '</td>'
+                if (Holiday[holidayCount].year === year && Holiday[holidayCount].month === month && Holiday[holidayCount].day === dayCount) {
+                    calendarHtml += '<td class="is-holiday">' + dayCount + '</td>'
+                    holidayCount++
+                } else {
+                    calendarHtml += '<td>' + dayCount + '</td>'
+                }
                 dayCount++
             }
         }

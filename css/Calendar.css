@@ -33,3 +33,7 @@ td:last-child {
 td.is-disabled {
     color: #ccc;
 }
+
+td.is-holiday {
+    color: red;
+}
