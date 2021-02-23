@@ -1,4 +1,4 @@
-const Projects = [
+const Project = [
     'A',
     'B',
     'C',

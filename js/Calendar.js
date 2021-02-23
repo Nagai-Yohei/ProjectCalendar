@@ -3,7 +3,7 @@ const date = new Date()
 let year = date.getFullYear()
 let month = date.getMonth() + 1
 const config = {
-    show: 3,
+    show: 2,
 }
 const Index = {
     Project: 0,
@@ -81,7 +81,18 @@ function createCalendar(year, month) {
             }
         }
         calendarHtml += '</tr>'
-    
+
+        if (Project.length > 0) {
+            for (let i = 0; i < Project.length; i++) {
+                calendarHtml += '<tr><td>' + Project[i] + '</td>'
+                for (let j = 1; j < weeks.length; j++) {
+                    calendarHtml += '<td></td>'
+                }
+                calendarHtml += '</tr>'
+            }
+            w += Project.length
+        }
+
         if (finishMonth) {
             break
         }
