@@ -17,10 +17,9 @@ let dayCount = 1
 let calendarHtml = ''
 let finishMonth = false
 
-console.log(endDayCount)
-
-calendarHtml += '<h1>' + year  + '/' + month + '</h1>'
-calendarHtml += '<table>'
+function GetYearAndMonth(yearstr, monthstr) {
+    return ('<h1>' + year  + '/' + month + '</h1>')
+}
 
 function GetDayOfWeekTable(){
     const weeks = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
@@ -31,6 +30,8 @@ function GetDayOfWeekTable(){
     return txt
 }
 
+calendarHtml += GetYearAndMonth(year, month)
+calendarHtml += '<table>'
 calendarHtml += GetDayOfWeekTable()
 
 for (let w = 0; ; w++) {
