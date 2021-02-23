@@ -84,9 +84,9 @@ function createCalendar(year, month) {
 
         if (Project.length > 0) {
             for (let i = 0; i < Project.length; i++) {
-                calendarHtml += '<tr><td>' + Project[i] + '</td>'
+                calendarHtml += '<tr><td class="is-project">' + Project[i] + '</td>'
                 for (let j = 1; j < weeks.length; j++) {
-                    calendarHtml += '<td></td>'
+                    calendarHtml += '<td class="is-project"></td>'
                 }
                 calendarHtml += '</tr>'
             }

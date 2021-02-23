@@ -37,3 +37,7 @@ td.is-disabled {
 td.is-holiday {
     color: red;
 }
+
+td.is-project {
+    font-size: 11px;
+}
