@@ -46,6 +46,18 @@ function createCalendarWorkday(year, month, day) {
     return calendarHtml
 }
 
+function createProjectHtml(weekLength) {
+    let calendarHtml = ''
+    for (let i = 0; i < Project.length; i++) {
+        calendarHtml += '<tr><td class="is-project">' + Project[i] + '</td>'
+        for (let j = 1; j < weekLength; j++) {
+            calendarHtml += '<td class="is-project"></td>'
+        }
+        calendarHtml += '</tr>'
+    }
+    return calendarHtml
+}
+
 function createCalendar(year, month) {
     const weeks = ['Project', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     const startDate = new Date(year, month - 1, 1)
@@ -79,17 +91,15 @@ function createCalendar(year, month) {
                 calendarHtml += createCalendarWorkday(year, month, dayCount)
                 dayCount++
             }
+
+            if (dayCount === endDayCount) {
+                finishMonth = true
+            }
         }
         calendarHtml += '</tr>'
 
         if (Project.length > 0) {
-            for (let i = 0; i < Project.length; i++) {
-                calendarHtml += '<tr><td class="is-project">' + Project[i] + '</td>'
-                for (let j = 1; j < weeks.length; j++) {
-                    calendarHtml += '<td class="is-project"></td>'
-                }
-                calendarHtml += '</tr>'
-            }
+            calendarHtml += createProjectHtml(weeks.length)
             w += Project.length
         }
 
