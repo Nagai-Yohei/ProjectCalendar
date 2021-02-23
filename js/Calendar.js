@@ -28,8 +28,8 @@ function createCalendar(year, month) {
     for (let w = 0; ; w++) {
         calendarHtml += '<tr><td></td>'
         for (let d = 1; d < weeks.length; d++) {
-            if (w == 0 && d < startDay) {
-                let num = lastMonthEndDayCount - startDay + d + 1
+            if (w == 0 && d < startDay + 1) {
+                let num = lastMonthEndDayCount - startDay + d
                 calendarHtml += '<td class="is-disabled">' + num + '</td>'
             } else if (dayCount > endDayCount) {
                 let num = dayCount - endDayCount
