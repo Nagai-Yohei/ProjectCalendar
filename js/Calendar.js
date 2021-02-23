@@ -7,7 +7,7 @@ const config = {
 }
 
 function createCalendar(year, month) {
-    const weeks = ['project', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    const weeks = ['Project', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     const startDate = new Date(year, month - 1, 1)
     const startDay = startDate.getDay()
     const endDate = new Date(year, month,  0)
