@@ -1,3 +1,12 @@
+#calendar {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+section {
+    margin: 10px;
+}
+
 h1 {
     font-size: 18px;
 }
