@@ -1,7 +1,7 @@
 
 const date = new Date()
-const year = date.getFullYear()
-const month = date.getMonth() + 1
+let year = date.getFullYear()
+let month = date.getMonth() + 1
 const config = {
     show: 3,
 }
@@ -65,5 +65,27 @@ function showCalendar(year, month) {
         }
     }
 }
+
+function moveCalendar(e) {
+    document.querySelector('#calendar').innerHTML = ''
+    if (e.target.id === 'prev') {
+        month--
+        if (month < 1) {
+            year--
+            month = 12
+        }
+    }
+    if (e.target.id === 'next') {
+        month++
+        if (month > 12) {
+            year++
+            month = 1
+        }
+    }
+    showCalendar(year, month)
+}
+
+document.querySelector('#prev').addEventListener('click', moveCalendar)
+document.querySelector('#next').addEventListener('click', moveCalendar)
 
 showCalendar(year, month)
