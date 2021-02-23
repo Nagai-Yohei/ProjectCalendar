@@ -16,6 +16,36 @@ const Index = {
     Saturday: 7,
 }
 
+function createCalendarInitialize(year, month, weeks) {
+    let calendarHtml = ''
+    calendarHtml += '<h1>' + year  + '/' + month + '</h1>'
+    calendarHtml += '<table>'
+    for (let i = 0; i < weeks.length; i++) {
+        calendarHtml += '<td>' + weeks[i] + '</td>'
+    }
+    return calendarHtml
+}
+
+function createCalendarHoliday(year, month, day) {
+    let calendarHtml = ''
+    if (isWorkDay(year, month, day)) {
+        calendarHtml = '<td>' + day + '</td>'
+    } else {
+        calendarHtml = '<td class="is-holiday">' + day + '</td>'
+    }
+    return calendarHtml
+}
+
+function createCalendarWorkday(year, month, day) {
+    let calendarHtml = ''
+    if (isHoliday(year, month, day)) {
+        calendarHtml = '<td class="is-holiday">' + day + '</td>'
+    } else {
+        calendarHtml = '<td>' + day + '</td>'
+    }
+    return calendarHtml
+}
+
 function createCalendar(year, month) {
     const weeks = ['Project', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     const startDate = new Date(year, month - 1, 1)
@@ -29,11 +59,7 @@ function createCalendar(year, month) {
     let calendarHtml = ''
     let finishMonth = false
     
-    calendarHtml += '<h1>' + year  + '/' + month + '</h1>'
-    calendarHtml += '<table>'
-    for (let i = 0; i < weeks.length; i++) {
-        calendarHtml += '<td>' + weeks[i] + '</td>'
-    }
+    calendarHtml += createCalendarInitialize(year, month, weeks)
     
     for (let w = 0; ; w++) {
         calendarHtml += '<tr><td></td>'
@@ -47,18 +73,10 @@ function createCalendar(year, month) {
                 finishMonth = true
                 dayCount++
             } else if ((d === Index.Sunday) || (d === Index.Saturday)) {
-                if (isWorkDay(year, month, dayCount)) {
-                    calendarHtml += '<td>' + dayCount + '</td>'
-                } else {
-                    calendarHtml += '<td class="is-holiday">' + dayCount + '</td>'
-                }
+                calendarHtml += createCalendarHoliday(year, month, dayCount)
                 dayCount++
             } else {
-                if (isHoliday(year, month, dayCount)) {
-                    calendarHtml += '<td class="is-holiday">' + dayCount + '</td>'
-                } else {
-                    calendarHtml += '<td>' + dayCount + '</td>'
-                }
+                calendarHtml += createCalendarWorkday(year, month, dayCount)
                 dayCount++
             }
         }

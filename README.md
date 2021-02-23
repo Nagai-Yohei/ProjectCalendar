@@ -1,6 +1,6 @@
 # ProjectCalendar
 プロジェクトでのマイルストーンを表示するカレンダーです。  
-Html5, CSS, Javascriptの練習と実益を兼ねて作っています。  
+作者のHtml5, CSS, Javascriptの練習と実益を兼ねて作っています。  
 
 ## 開発環境
 Visual Studio Code：1.53.2以降  
