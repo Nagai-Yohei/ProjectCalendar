@@ -13,7 +13,7 @@ td {
     text-align: center;
 }
 
-td:first-child {
+td:nth-child(1) {
     color: red;
 }
 

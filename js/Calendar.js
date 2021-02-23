@@ -1,13 +1,20 @@
-const weeks = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+
 const date = new Date()
+
 const year = date.getFullYear()
-const month = date.getMonth() + 1              // 0~11が返るので、1加算することが必要
-const startDate = new Date(year, month - 1, 1) // 月の最初の日を取得
-const endDate = new Date(year, month,  0) // 月の最後の日を取得
-const endDayCount = endDate.getDate() // 月の末日
-const startDay = startDate.getDay() // 月の最初の日の曜日を取得
-let dayCount = 1 // 日にちのカウント
-let calendarHtml = '' // HTMLを組み立てる変数
+const month = date.getMonth() + 1
+
+// 月の最初の日と曜日を取得
+const startDate = new Date(year, month - 1, 1)
+const startDay = startDate.getDay()
+
+// 月の最後の日を取得
+const endDate = new Date(year, month,  0)
+const endDayCount = endDate.getDate()
+
+
+let dayCount = 1
+let calendarHtml = ''
 let finishMonth = false
 
 console.log(endDayCount)
@@ -15,10 +22,16 @@ console.log(endDayCount)
 calendarHtml += '<h1>' + year  + '/' + month + '</h1>'
 calendarHtml += '<table>'
 
-// 曜日の行を作成
-for (let i = 0; i < weeks.length; i++) {
-    calendarHtml += '<td>' + weeks[i] + '</td>'
+function GetDayOfWeekTable(){
+    const weeks = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    let txt = ''
+    for (let i = 0; i < weeks.length; i++) {
+        txt += '<td>' + weeks[i] + '</td>'
+    }
+    return txt
 }
+
+calendarHtml += GetDayOfWeekTable()
 
 for (let w = 0; ; w++) {
     calendarHtml += '<tr>'
