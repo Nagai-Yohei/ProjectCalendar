@@ -46,18 +46,6 @@ function createCalendarWorkday(year, month, day) {
     return calendarHtml
 }
 
-function createProjectHtml(weekLength) {
-    let calendarHtml = ''
-    for (let i = 0; i < Project.length; i++) {
-        calendarHtml += '<tr><td class="is-project">' + Project[i] + '</td>'
-        for (let j = 1; j < weekLength; j++) {
-            calendarHtml += '<td class="is-project"></td>'
-        }
-        calendarHtml += '</tr>'
-    }
-    return calendarHtml
-}
-
 function createCalendar(year, month) {
     const weeks = ['Project', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     const startDate = new Date(year, month - 1, 1)
@@ -75,6 +63,7 @@ function createCalendar(year, month) {
     
     for (let w = 0; ; w++) {
         calendarHtml += '<tr><td></td>'
+        let dayCountBase = dayCount
         for (let d = Index.Sunday; d < weeks.length; d++) {
             if (w == 0 && d < startDay + 1) {
                 let num = lastMonthEndDayCount - startDay + d
@@ -99,7 +88,15 @@ function createCalendar(year, month) {
         calendarHtml += '</tr>'
 
         if (Project.length > 0) {
-            calendarHtml += createProjectHtml(weeks.length)
+            for (let i = 0; i < Project.length; i++) {
+                calendarHtml += '<tr><td class="is-project">' + Project[i] + '</td>'
+                for (let j = 1; j < weeks.length; j++) {
+                    let MilestoneHtml = ''
+                    MilestoneHtml = getMilestone(year, month, dayCountBase + j - 1, Project[i])
+                    calendarHtml += '<td class="is-project">' + MilestoneHtml + '</td>'
+                }
+                calendarHtml += '</tr>'
+            }
             w += Project.length
         }
 
