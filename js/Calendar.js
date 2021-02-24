@@ -64,6 +64,7 @@ function createCalendar(year, month) {
     for (let w = 0; ; w++) {
         calendarHtml += '<tr><td></td>'
         let dayCountBase = dayCount
+        let dayCountUp = false
         for (let d = Index.Sunday; d < weeks.length; d++) {
             if (w == 0 && d < startDay + 1) {
                 let num = lastMonthEndDayCount - startDay + d
@@ -72,17 +73,20 @@ function createCalendar(year, month) {
                 let num = dayCount - endDayCount
                 calendarHtml += '<td class="is-disabled">' + num + '</td>'
                 finishMonth = true
-                dayCount++
+                dayCountUp = true
             } else if ((d === Index.Sunday) || (d === Index.Saturday)) {
                 calendarHtml += createCalendarHoliday(year, month, dayCount)
-                dayCount++
+                dayCountUp = true
             } else {
                 calendarHtml += createCalendarWorkday(year, month, dayCount)
-                dayCount++
+                dayCountUp = true
             }
-
             if (dayCount === endDayCount) {
                 finishMonth = true
+            }
+            if (dayCountUp) {
+                dayCount++
+                dayCountUp = false
             }
         }
         calendarHtml += '</tr>'
@@ -92,8 +96,25 @@ function createCalendar(year, month) {
                 calendarHtml += '<tr><td class="is-project">' + Project[i] + '</td>'
                 for (let j = 1; j < weeks.length; j++) {
                     let MilestoneHtml = ''
-                    MilestoneHtml = getMilestone(year, month, dayCountBase + j - 1, Project[i])
-                    calendarHtml += '<td class="is-project">' + MilestoneHtml + '</td>'
+                    let day = dayCountBase + j - 1
+                    MilestoneHtml = getMilestone(year, month, day, Project[i])
+                    if (w == 0 && j < startDay + 1) {
+                        calendarHtml += '<td class="is-project">' + MilestoneHtml + '</td>'
+                    } else if (day > endDayCount) {
+                        calendarHtml += '<td class="is-project">' + MilestoneHtml + '</td>'
+                    } else if ((j === Index.Sunday) || (j === Index.Saturday)) {
+                        if (isWorkDay(year, month, day)) {
+                            calendarHtml += '<td class="is-project">' + MilestoneHtml + '</td>'
+                        } else {
+                            calendarHtml += '<td class="is-holiday-project">' + MilestoneHtml + '</td>'
+                        }
+                    } else {
+                        if (isHoliday(year, month, day)) {
+                            calendarHtml += '<td class="is-holiday-project">' + MilestoneHtml + '</td>'
+                        } else {
+                            calendarHtml += '<td class="is-project">' + MilestoneHtml + '</td>'
+                        }
+                    }
                 }
                 calendarHtml += '</tr>'
             }

@@ -46,3 +46,9 @@ td.is-holiday {
 td.is-project {
     font-size: 11px;
 }
+
+td.is-holiday-project {
+    color: red;
+    background-color: #ffeeee;
+    font-size: 11px;
+}
