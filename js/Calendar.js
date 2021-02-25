@@ -16,6 +16,26 @@ const Index = {
     Saturday: 7,
 }
 
+function getTdTag(isHoliday, isCategory, isDisabled) {
+    let tag = ''
+    if (isHoliday || isCategory || isDisabled) {
+        tag = '<td class="'
+        if (isHoliday) {
+            tag += ' is-holiday'
+        }
+        if (isCategory) {
+            tag += ' is-category'
+        }
+        if (isDisabled) {
+            tag += ' is-disabled'
+        }
+        tag += '">'
+    } else {
+        tag = '<td>'
+    }
+    return tag
+}
+
 function createCalendarInitialize(year, month, weeks) {
     let calendarHtml = ''
     calendarHtml += '<h1>' + year  + '/' + month + '</h1>'
@@ -26,24 +46,8 @@ function createCalendarInitialize(year, month, weeks) {
     return calendarHtml
 }
 
-function createCalendarHoliday(year, month, day) {
-    let calendarHtml = ''
-    if (isWorkDay(year, month, day)) {
-        calendarHtml = '<td>' + day + '</td>'
-    } else {
-        calendarHtml = '<td class="is-holiday">' + day + '</td>'
-    }
-    return calendarHtml
-}
-
-function createCalendarWorkday(year, month, day) {
-    let calendarHtml = ''
-    if (isHoliday(year, month, day)) {
-        calendarHtml = '<td class="is-holiday">' + day + '</td>'
-    } else {
-        calendarHtml = '<td>' + day + '</td>'
-    }
-    return calendarHtml
+function createCalendarWorkday(year, month, day, str, isCategory) {
+    return getTdTag(isHoliday(year, month, day), isCategory, false) + str + '</td>'
 }
 
 function createCalendar(year, month) {
@@ -68,16 +72,16 @@ function createCalendar(year, month) {
         for (let d = Index.Sunday; d < weeks.length; d++) {
             if (w == 0 && d < startDay + 1) {
                 let num = lastMonthEndDayCount - startDay + d
-                calendarHtml += '<td class="is-disabled">' + num + '</td>'
+                calendarHtml += getTdTag(false, false, true) + num + '</td>'
                 dayCountUp = false
             } else if (dayCount > endDayCount) {
                 let num = dayCount - endDayCount
-                calendarHtml += '<td class="is-disabled">' + num + '</td>'
+                calendarHtml += getTdTag(false, false, true) + num + '</td>'
                 finishMonth = true
             } else if ((d === Index.Sunday) || (d === Index.Saturday)) {
-                calendarHtml += createCalendarHoliday(year, month, dayCount)
+                calendarHtml += getTdTag(!isWorkDay(year, month, dayCount), false, false) + dayCount + '</td>'
             } else {
-                calendarHtml += createCalendarWorkday(year, month, dayCount)
+                calendarHtml += getTdTag(isHoliday(year, month, dayCount), false, false) + dayCount + '</td>'
             }
             if (dayCount === endDayCount) {
                 finishMonth = true
@@ -101,21 +105,21 @@ function createCalendar(year, month) {
                     if (w == 0 && j < startDay + 1) {
                         let num = lastMonthEndDayCount - startDay + j
                         EventHtml = getLastMonthEvent(year, month, num, Category[i])
-                        calendarHtml += '<td class="is-disabled-category">' + EventHtml + '</td>'
+                        calendarHtml += '<td class="is-disabled is-category">' + EventHtml + '</td>'
                         dayCountUp = false
                     } else if (day > endDayCount) {
                         let num = day - endDayCount
                         EventHtml = getNextMonthEvent(year, month, num, Category[i])
-                        calendarHtml += '<td class="is-disabled-category">' + EventHtml + '</td>'
+                        calendarHtml += '<td class="is-disabled is-category">' + EventHtml + '</td>'
                     } else if ((j === Index.Sunday) || (j === Index.Saturday)) {
                         if (isWorkDay(year, month, day)) {
                             calendarHtml += '<td class="is-category">' + EventHtml + '</td>'
                         } else {
-                            calendarHtml += '<td class="is-holiday-category">' + EventHtml + '</td>'
+                            calendarHtml += '<td class="is-holiday is-category">' + EventHtml + '</td>'
                         }
                     } else {
                         if (isHoliday(year, month, day)) {
-                            calendarHtml += '<td class="is-holiday-category">' + EventHtml + '</td>'
+                            calendarHtml += '<td class="is-holiday is-category">' + EventHtml + '</td>'
                         } else {
                             calendarHtml += '<td class="is-category">' + EventHtml + '</td>'
                         }

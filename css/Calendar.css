@@ -46,14 +46,3 @@ td.is-holiday {
 td.is-category {
     font-size: 11px;
 }
-
-td.is-holiday-category {
-    color: red;
-    background-color: #ffeeee;
-    font-size: 11px;
-}
-
-td.is-disabled-category {
-    color: #ccc;
-    font-size: 11px;
-}
