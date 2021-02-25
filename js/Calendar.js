@@ -96,28 +96,28 @@ function createCalendar(year, month) {
                 let dayCountUp = true
                 let day = dayCountBase
                 for (let j = 1; j < weeks.length; j++) {
-                    let MilestoneHtml = ''
-                    MilestoneHtml = getMilestone(year, month, day, Project[i])
+                    let EventHtml = ''
+                    EventHtml = getEvent(year, month, day, Project[i])
                     if (w == 0 && j < startDay + 1) {
                         let num = lastMonthEndDayCount - startDay + j
-                        MilestoneHtml = getLastMonthMilestone(year, month, num, Project[i])
-                        calendarHtml += '<td class="is-disabled-project">' + MilestoneHtml + '</td>'
+                        EventHtml = getLastMonthEvent(year, month, num, Project[i])
+                        calendarHtml += '<td class="is-disabled-project">' + EventHtml + '</td>'
                         dayCountUp = false
                     } else if (day > endDayCount) {
                         let num = day - endDayCount
-                        MilestoneHtml = getNextMonthMilestone(year, month, num, Project[i])
-                        calendarHtml += '<td class="is-disabled-project">' + MilestoneHtml + '</td>'
+                        EventHtml = getNextMonthEvent(year, month, num, Project[i])
+                        calendarHtml += '<td class="is-disabled-project">' + EventHtml + '</td>'
                     } else if ((j === Index.Sunday) || (j === Index.Saturday)) {
                         if (isWorkDay(year, month, day)) {
-                            calendarHtml += '<td class="is-project">' + MilestoneHtml + '</td>'
+                            calendarHtml += '<td class="is-project">' + EventHtml + '</td>'
                         } else {
-                            calendarHtml += '<td class="is-holiday-project">' + MilestoneHtml + '</td>'
+                            calendarHtml += '<td class="is-holiday-project">' + EventHtml + '</td>'
                         }
                     } else {
                         if (isHoliday(year, month, day)) {
-                            calendarHtml += '<td class="is-holiday-project">' + MilestoneHtml + '</td>'
+                            calendarHtml += '<td class="is-holiday-project">' + EventHtml + '</td>'
                         } else {
-                            calendarHtml += '<td class="is-project">' + MilestoneHtml + '</td>'
+                            calendarHtml += '<td class="is-project">' + EventHtml + '</td>'
                         }
                     }
                     if (dayCountUp) {

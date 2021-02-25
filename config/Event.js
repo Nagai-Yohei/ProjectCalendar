@@ -1,4 +1,4 @@
-const MilestoneDate = [
+const EventDate = [
     {"id":0, "year":2021, "month":2, "day":5, "project":'A', "milestone":"ほげ"},
     {"id":1, "year":2021, "month":2, "day":10, "project":'B', "milestone":"ふが"},
     {"id":2, "year":2021, "month":2, "day":25, "project":'C', "milestone":"foo"},
@@ -15,59 +15,59 @@ const MilestoneDate = [
     {"id":13, "year":2020, "month":12, "day":31, "project":'A', "milestone":"1231"}
 ]
 
-const MilestoneId = [
+const EventId = [
     {"refid":0, "dayafter":10, "milestone":"まいるすとーん1"},
     {"refid":2, "dayafter":20, "milestone":"マイルストーン2"}
 ]
 
 // 以下は編集不要
 
-let Milestone = MilestoneDate
+let Events = EventDate
 
-function getMilestone(year, month, day, project) {
+function getEvent(year, month, day, project) {
     let ret = ''
-    for (let i = 0; i < Milestone.length; i++) {
-        if (Milestone[i].year === year && Milestone[i].month === month && Milestone[i].day === day && Milestone[i].project === project) {
-            ret = Milestone[i].milestone
+    for (let i = 0; i < Events.length; i++) {
+        if (Events[i].year === year && Events[i].month === month && Events[i].day === day && Events[i].project === project) {
+            ret = Events[i].milestone
             break
         }
     }
     return ret
 }
 
-function getLastMonthMilestone(year, month, day, project) {
+function getLastMonthEvent(year, month, day, project) {
     let ret = ''
     if (month === 1) {
-        ret = getMilestone(year - 1, 12, day, project)
+        ret = getEvent(year - 1, 12, day, project)
     } else {
-        ret = getMilestone(year, month - 1, day, project)
+        ret = getEvent(year, month - 1, day, project)
     }
     return ret
 }
 
-function getNextMonthMilestone(year, month, day, project) {
+function getNextMonthEvent(year, month, day, project) {
     let ret = ''
     if (month === 12) {
-        ret = getMilestone(year + 1, 1, day, project)
+        ret = getEvent(year + 1, 1, day, project)
     } else {
-        ret = getMilestone(year, month + 1, day, project)
+        ret = getEvent(year, month + 1, day, project)
     }
     return ret
 }
 
-function generateMilestone() {
-    let newId = MilestoneDate[MilestoneDate.length - 1].id + 1
-    for (let i = 0; i < MilestoneId.length; i++) {
-        for (let j = 0; j < MilestoneDate.length; j++) {
-            if (MilestoneDate[j].id === MilestoneId[i].refid) {
-                let targetDate = new Date(MilestoneDate[j].year, MilestoneDate[j].month - 1, MilestoneDate[j].day)
-                targetDate.setDate(targetDate.getDate() + MilestoneId[i].dayafter)
-                let targetMilestone = {"id":newId, "year":targetDate.getFullYear(), "month":targetDate.getMonth() + 1, "day":targetDate.getDate(), "project":MilestoneDate[j].project, "milestone":MilestoneId[i].milestone}
-                Milestone.push(targetMilestone)
+function generateEvent() {
+    let newId = EventDate[EventDate.length - 1].id + 1
+    for (let i = 0; i < EventId.length; i++) {
+        for (let j = 0; j < EventDate.length; j++) {
+            if (EventDate[j].id === EventId[i].refid) {
+                let targetDate = new Date(EventDate[j].year, EventDate[j].month - 1, EventDate[j].day)
+                targetDate.setDate(targetDate.getDate() + EventId[i].dayafter)
+                let targetEvent = {"id":newId, "year":targetDate.getFullYear(), "month":targetDate.getMonth() + 1, "day":targetDate.getDate(), "project":EventDate[j].project, "milestone":EventId[i].milestone}
+                Event.push(targetEvent)
                 newId++
             }
         }
     }
 }
 
-generateMilestone()
+generateEvent()
