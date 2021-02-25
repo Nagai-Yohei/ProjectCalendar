@@ -63,7 +63,7 @@ function generateEvent() {
                 let targetDate = new Date(EventDate[j].year, EventDate[j].month - 1, EventDate[j].day)
                 targetDate.setDate(targetDate.getDate() + EventId[i].dayafter)
                 let targetEvent = {"id":newId, "year":targetDate.getFullYear(), "month":targetDate.getMonth() + 1, "day":targetDate.getDate(), "project":EventDate[j].project, "milestone":EventId[i].milestone}
-                Event.push(targetEvent)
+                Events.push(targetEvent)
                 newId++
             }
         }
