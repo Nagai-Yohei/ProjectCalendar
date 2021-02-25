@@ -60,10 +60,10 @@ function generateEvent() {
     for (let i = 0; i < EventId.length; i++) {
         for (let j = 0; j < EventDate.length; j++) {
             if (EventDate[j].id === EventId[i].refid) {
-                let targetDate = new Date(EventDate[j].year, EventDate[j].month - 1, EventDate[j].day)
-                targetDate.setDate(targetDate.getDate() + EventId[i].dayafter)
-                let targetEvent = {"id":newId, "year":targetDate.getFullYear(), "month":targetDate.getMonth() + 1, "day":targetDate.getDate(), "category":EventDate[j].category, "milestone":EventId[i].milestone}
-                Events.push(targetEvent)
+                let td = new Date(EventDate[j].year, EventDate[j].month - 1, EventDate[j].day)
+                td.setDate(td.getDate() + EventId[i].dayafter)
+                let te = {"id":newId, "year":td.getFullYear(), "month":td.getMonth() + 1, "day":td.getDate(), "category":EventDate[j].category, "milestone":EventId[i].milestone}
+                Events.push(te)
                 newId++
             }
         }
