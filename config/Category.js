@@ -1,4 +1,4 @@
-const Project = [
+const Category = [
     'A',
     'B',
     'C',

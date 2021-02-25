@@ -6,7 +6,7 @@ const config = {
     show: 2,
 }
 const Index = {
-    Project: 0,
+    Category: 0,
     Sunday: 1,
     Monday: 2,
     Tuesday: 3,
@@ -47,7 +47,7 @@ function createCalendarWorkday(year, month, day) {
 }
 
 function createCalendar(year, month) {
-    const weeks = ['Project', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    const weeks = ['Category', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     const startDate = new Date(year, month - 1, 1)
     const startDay = startDate.getDay()
     const endDate = new Date(year, month,  0)
@@ -90,34 +90,34 @@ function createCalendar(year, month) {
         }
         calendarHtml += '</tr>'
 
-        if (Project.length > 0) {
-            for (let i = 0; i < Project.length; i++) {
-                calendarHtml += '<tr><td class="is-project">' + Project[i] + '</td>'
+        if (Category.length > 0) {
+            for (let i = 0; i < Category.length; i++) {
+                calendarHtml += '<tr><td class="is-category">' + Category[i] + '</td>'
                 let dayCountUp = true
                 let day = dayCountBase
                 for (let j = 1; j < weeks.length; j++) {
                     let EventHtml = ''
-                    EventHtml = getEvent(year, month, day, Project[i])
+                    EventHtml = getEvent(year, month, day, Category[i])
                     if (w == 0 && j < startDay + 1) {
                         let num = lastMonthEndDayCount - startDay + j
-                        EventHtml = getLastMonthEvent(year, month, num, Project[i])
-                        calendarHtml += '<td class="is-disabled-project">' + EventHtml + '</td>'
+                        EventHtml = getLastMonthEvent(year, month, num, Category[i])
+                        calendarHtml += '<td class="is-disabled-category">' + EventHtml + '</td>'
                         dayCountUp = false
                     } else if (day > endDayCount) {
                         let num = day - endDayCount
-                        EventHtml = getNextMonthEvent(year, month, num, Project[i])
-                        calendarHtml += '<td class="is-disabled-project">' + EventHtml + '</td>'
+                        EventHtml = getNextMonthEvent(year, month, num, Category[i])
+                        calendarHtml += '<td class="is-disabled-category">' + EventHtml + '</td>'
                     } else if ((j === Index.Sunday) || (j === Index.Saturday)) {
                         if (isWorkDay(year, month, day)) {
-                            calendarHtml += '<td class="is-project">' + EventHtml + '</td>'
+                            calendarHtml += '<td class="is-category">' + EventHtml + '</td>'
                         } else {
-                            calendarHtml += '<td class="is-holiday-project">' + EventHtml + '</td>'
+                            calendarHtml += '<td class="is-holiday-category">' + EventHtml + '</td>'
                         }
                     } else {
                         if (isHoliday(year, month, day)) {
-                            calendarHtml += '<td class="is-holiday-project">' + EventHtml + '</td>'
+                            calendarHtml += '<td class="is-holiday-category">' + EventHtml + '</td>'
                         } else {
-                            calendarHtml += '<td class="is-project">' + EventHtml + '</td>'
+                            calendarHtml += '<td class="is-category">' + EventHtml + '</td>'
                         }
                     }
                     if (dayCountUp) {
@@ -128,7 +128,7 @@ function createCalendar(year, month) {
                 }
                 calendarHtml += '</tr>'
             }
-            w += Project.length
+            w += Category.length
         }
 
         if (finishMonth) {
