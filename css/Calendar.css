@@ -52,3 +52,8 @@ td.is-holiday-project {
     background-color: #ffeeee;
     font-size: 11px;
 }
+
+td.is-disabled-project {
+    color: #ccc;
+    font-size: 11px;
+}

@@ -64,29 +64,28 @@ function createCalendar(year, month) {
     for (let w = 0; ; w++) {
         calendarHtml += '<tr><td></td>'
         let dayCountBase = dayCount
-        let dayCountUp = false
+        let dayCountUp = true
         for (let d = Index.Sunday; d < weeks.length; d++) {
             if (w == 0 && d < startDay + 1) {
                 let num = lastMonthEndDayCount - startDay + d
                 calendarHtml += '<td class="is-disabled">' + num + '</td>'
+                dayCountUp = false
             } else if (dayCount > endDayCount) {
                 let num = dayCount - endDayCount
                 calendarHtml += '<td class="is-disabled">' + num + '</td>'
                 finishMonth = true
-                dayCountUp = true
             } else if ((d === Index.Sunday) || (d === Index.Saturday)) {
                 calendarHtml += createCalendarHoliday(year, month, dayCount)
-                dayCountUp = true
             } else {
                 calendarHtml += createCalendarWorkday(year, month, dayCount)
-                dayCountUp = true
             }
             if (dayCount === endDayCount) {
                 finishMonth = true
             }
             if (dayCountUp) {
                 dayCount++
-                dayCountUp = false
+            } else {
+                dayCountUp = true
             }
         }
         calendarHtml += '</tr>'
@@ -94,14 +93,20 @@ function createCalendar(year, month) {
         if (Project.length > 0) {
             for (let i = 0; i < Project.length; i++) {
                 calendarHtml += '<tr><td class="is-project">' + Project[i] + '</td>'
+                let dayCountUp = true
+                let day = dayCountBase
                 for (let j = 1; j < weeks.length; j++) {
                     let MilestoneHtml = ''
-                    let day = dayCountBase + j - 1
                     MilestoneHtml = getMilestone(year, month, day, Project[i])
                     if (w == 0 && j < startDay + 1) {
-                        calendarHtml += '<td class="is-project">' + MilestoneHtml + '</td>'
+                        let num = lastMonthEndDayCount - startDay + j
+                        MilestoneHtml = getLastMonthMilestone(year, month, num, Project[i])
+                        calendarHtml += '<td class="is-disabled-project">' + MilestoneHtml + '</td>'
+                        dayCountUp = false
                     } else if (day > endDayCount) {
-                        calendarHtml += '<td class="is-project">' + MilestoneHtml + '</td>'
+                        let num = day - endDayCount
+                        MilestoneHtml = getNextMonthMilestone(year, month, num, Project[i])
+                        calendarHtml += '<td class="is-disabled-project">' + MilestoneHtml + '</td>'
                     } else if ((j === Index.Sunday) || (j === Index.Saturday)) {
                         if (isWorkDay(year, month, day)) {
                             calendarHtml += '<td class="is-project">' + MilestoneHtml + '</td>'
@@ -114,6 +119,11 @@ function createCalendar(year, month) {
                         } else {
                             calendarHtml += '<td class="is-project">' + MilestoneHtml + '</td>'
                         }
+                    }
+                    if (dayCountUp) {
+                        day++
+                    } else {
+                        dayCountUp = true
                     }
                 }
                 calendarHtml += '</tr>'
