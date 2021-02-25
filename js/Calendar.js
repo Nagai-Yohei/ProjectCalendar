@@ -46,10 +46,6 @@ function createCalendarInitialize(year, month, weeks) {
     return calendarHtml
 }
 
-function createCalendarWorkday(year, month, day, str, isCategory) {
-    return getTdTag(isHoliday(year, month, day), isCategory, false) + str + '</td>'
-}
-
 function createCalendar(year, month) {
     const weeks = ['Category', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     const startDate = new Date(year, month - 1, 1)
