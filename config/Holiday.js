@@ -27,6 +27,8 @@ const Holiday = [
     {"year":2022, "month":2, "day":23}
 ]
 
+// 以下は編集不要
+
 function isHoliday(year, month, day) {
     let ret = false
     for (let i = 0; i < Holiday.length; i++) {
