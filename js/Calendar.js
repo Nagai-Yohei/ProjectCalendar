@@ -17,28 +17,17 @@ const Index = {
 }
 
 function getTdTag(isHoliday, isCategory, isDisabled) {
-    let tag = ''
-    if (isHoliday || isCategory || isDisabled) {
-        tag = '<td class="'
-        if (isHoliday) {
-            tag += ' is-holiday'
-        }
-        if (isCategory) {
-            tag += ' is-category'
-        }
-        if (isDisabled) {
-            tag += ' is-disabled'
-        }
-        tag += '">'
-    } else {
-        tag = '<td>'
-    }
+    let tag = '<td'
+    tag += (isHoliday || isCategory || isDisabled) ? ' class="' : ''
+    tag += isHoliday ? ' is-holiday' : ''
+    tag += isCategory ? ' is-category' : ''
+    tag += isDisabled ? ' is-disabled' : ''
+    tag += (isHoliday || isCategory || isDisabled) ? '">' : '>'
     return tag
 }
 
 function createCalendarInitialize(year, month, weeks) {
-    let calendarHtml = ''
-    calendarHtml += '<h1>' + year  + '/' + month + '</h1>'
+    let calendarHtml = '<h1>' + year  + '/' + month + '</h1>'
     calendarHtml += '<table>'
     for (let i = 0; i < weeks.length; i++) {
         calendarHtml += '<td>' + weeks[i] + '</td>'
@@ -47,7 +36,7 @@ function createCalendarInitialize(year, month, weeks) {
 }
 
 function createCalendar(year, month) {
-    const weeks = ['Category', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    const weeks = [' ', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     const startDate = new Date(year, month - 1, 1)
     const startDay = startDate.getDay()
     const endDate = new Date(year, month,  0)
