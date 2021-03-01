@@ -6,37 +6,67 @@ const config = {
     show: 2,
 }
 const Index = {
-    Category: 0,
-    Sunday: 1,
-    Monday: 2,
-    Tuesday: 3,
-    Wednesday: 4,
-    Thursday: 5,
-    Friday: 6,
-    Saturday: 7,
+    Sunday: 0,
+    Monday: 1,
+    Tuesday: 2,
+    Wednesday: 3,
+    Thursday: 4,
+    Friday: 5,
+    Saturday: 6,
 }
 
-function getTdTag(isHoliday, isCategory, isDisabled) {
-    let tag = '<td'
-    tag += (isHoliday || isCategory || isDisabled) ? ' class="' : ''
-    tag += isHoliday ? ' is-holiday' : ''
-    tag += isCategory ? ' is-category' : ''
-    tag += isDisabled ? ' is-disabled' : ''
-    tag += (isHoliday || isCategory || isDisabled) ? '">' : '>'
-    return tag
+function getHolidayClassTag(isHoliday) {
+    return isHoliday ? 'is-holiday ' : ''
+}
+
+function getOtherMonthClassTag(isOtherMonth) {
+    return isOtherMonth ? 'is-other-month ' : ''
 }
 
 function createCalendarInitialize(year, month, weeks) {
     let calendarHtml = '<h1>' + year  + '/' + month + '</h1>'
     calendarHtml += '<table>'
     for (let i = 0; i < weeks.length; i++) {
-        calendarHtml += '<td>' + weeks[i] + '</td>'
+        calendarHtml += '<td class="first-column">' + weeks[i] + '</td>'
+    }
+    return calendarHtml
+}
+
+function getEventHtml(year, month, day) {
+    let calendarHtml = ''
+    for (let i = 0; i < Category.length; i++) {
+        let eventHtml = getEvent(year, month, day, Category[i])
+        if (eventHtml !== '') {
+            calendarHtml += '<div class="event-string category-' + Category[i] + '">' + eventHtml + '</div>'
+        }
+    }
+    return calendarHtml
+}
+
+function getNextMonthEventHtml(year, month, day) {
+    let calendarHtml = ''
+    for (let i = 0; i < Category.length; i++) {
+        let eventHtml = getNextMonthEvent(year, month, day, Category[i])
+        if (eventHtml !== '') {
+            calendarHtml += '<div class="is-other-month event-string category-' + Category[i] + '">' + eventHtml + '</div>'
+        }
+    }
+    return calendarHtml
+}
+
+function getLastMonthEventHtml(year, month, day) {
+    let calendarHtml = ''
+    for (let i = 0; i < Category.length; i++) {
+        let eventHtml = getLastMonthEvent(year, month, day, Category[i])
+        if (eventHtml !== '') {
+            calendarHtml += '<div class="is-other-month event-string category-' + Category[i] + '">' + eventHtml + '</div>'
+        }
     }
     return calendarHtml
 }
 
 function createCalendar(year, month) {
-    const weeks = [' ', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    const weeks = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     const startDate = new Date(year, month - 1, 1)
     const startDay = startDate.getDay()
     const endDate = new Date(year, month,  0)
@@ -51,23 +81,41 @@ function createCalendar(year, month) {
     calendarHtml += createCalendarInitialize(year, month, weeks)
     
     for (let w = 0; ; w++) {
-        calendarHtml += '<tr><td></td>'
+        calendarHtml += '<tr>'
         let dayCountBase = dayCount
         let dayCountUp = true
-        for (let d = Index.Sunday; d < weeks.length; d++) {
-            if (w == 0 && d < startDay + 1) {
-                let num = lastMonthEndDayCount - startDay + d
-                calendarHtml += getTdTag(false, false, true) + num + '</td>'
+        for (let d = 0; d < weeks.length; d++) {
+            calendarHtml += '<td>'
+            if (w == 0 && d < startDay) {
+                let num = lastMonthEndDayCount - startDay + d + 1
+                calendarHtml += '<div class="day-string '
+                calendarHtml += getHolidayClassTag(false)
+                calendarHtml += getOtherMonthClassTag(true)
+                calendarHtml += '">' + num + '</div>'
+                calendarHtml += getLastMonthEventHtml(year, month, num)
                 dayCountUp = false
             } else if (dayCount > endDayCount) {
                 let num = dayCount - endDayCount
-                calendarHtml += getTdTag(false, false, true) + num + '</td>'
+                calendarHtml += '<div class="day-string '
+                calendarHtml += getHolidayClassTag(false)
+                calendarHtml += getOtherMonthClassTag(true)
+                calendarHtml += '">' + num + '</div>'
+                calendarHtml += getNextMonthEventHtml(year, month, num)
                 finishMonth = true
             } else if ((d === Index.Sunday) || (d === Index.Saturday)) {
-                calendarHtml += getTdTag(!isWorkDay(year, month, dayCount), false, false) + dayCount + '</td>'
+                calendarHtml += '<div class="day-string '
+                calendarHtml += getHolidayClassTag(!isWorkDay(year, month, dayCount))
+                calendarHtml += getOtherMonthClassTag(false)
+                calendarHtml += '">' + dayCount + '</div>'
+                calendarHtml += getEventHtml(year, month, dayCount)
             } else {
-                calendarHtml += getTdTag(isHoliday(year, month, dayCount), false, false) + dayCount + '</td>'
+                calendarHtml += '<div class="day-string '
+                calendarHtml += getHolidayClassTag(isHoliday(year, month, dayCount))
+                calendarHtml += getOtherMonthClassTag(false)
+                calendarHtml += '">' + dayCount + '</div>'
+                calendarHtml += getEventHtml(year, month, dayCount)
             }
+            calendarHtml += '</td>'
             if (dayCount === endDayCount) {
                 finishMonth = true
             }
@@ -78,36 +126,6 @@ function createCalendar(year, month) {
             }
         }
         calendarHtml += '</tr>'
-
-        if (Category.length > 0) {
-            for (let i = 0; i < Category.length; i++) {
-                calendarHtml += '<tr>' + getTdTag(false, true, false) + Category[i] + '</td>'
-                let dayCountUp = true
-                let day = dayCountBase
-                for (let d = Index.Sunday; d < weeks.length; d++) {
-                    let EventHtml = getEvent(year, month, day, Category[i])
-                    if (w == 0 && d < startDay + 1) {
-                        let num = lastMonthEndDayCount - startDay + d
-                        calendarHtml += getTdTag(false, true, true) + getLastMonthEvent(year, month, num, Category[i]) + '</td>'
-                        dayCountUp = false
-                    } else if (day > endDayCount) {
-                        let num = day - endDayCount
-                        calendarHtml += getTdTag(false, true, true) + getNextMonthEvent(year, month, num, Category[i]) + '</td>'
-                    } else if ((d === Index.Sunday) || (d === Index.Saturday)) {
-                        calendarHtml += getTdTag(!isWorkDay(year, month, day), true, false) + EventHtml + '</td>'
-                    } else {
-                        calendarHtml += getTdTag(isHoliday(year, month, day), true, false) + EventHtml + '</td>'
-                    }
-                    if (dayCountUp) {
-                        day++
-                    } else {
-                        dayCountUp = true
-                    }
-                }
-                calendarHtml += '</tr>'
-            }
-            w += Category.length
-        }
 
         if (finishMonth) {
             break

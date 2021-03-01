@@ -23,26 +23,49 @@ td {
     border: 1px solid #ddd;
     padding: 5px;
     text-align: center;
+    vertical-align: top;
     width: 100px;
+    height: 100px;
 }
 
-td:nth-child(2) {
+.first-column {
+    font-size: 14px;
+    height: 20px;
+}
+
+.day-string {
+    font-size: 14px;
+}
+
+.event-string {
+    font-size: 12px;
+}
+
+.category-A::before {
+    content: "◆";
     color: red;
 }
 
-td:last-child {
-    color: royalblue;
+.category-B::before {
+    content: "◆";
+    color: blue;
 }
 
-td.is-disabled {
+.category-C::before {
+    content: "◆";
+    color: orange;
+}
+
+.category-D::before {
+    content: "◆";
+    color: green;
+}
+
+.is-other-month {
     color: #ccc;
 }
 
-td.is-holiday {
+.is-holiday {
     color: red;
     background-color: #ffeeee;
-}
-
-td.is-category {
-    font-size: 11px;
 }
