@@ -82,7 +82,6 @@ function createCalendar(year, month) {
     
     for (let w = 0; ; w++) {
         calendarHtml += '<tr>'
-        let dayCountBase = dayCount
         let dayCountUp = true
         for (let d = 0; d < weeks.length; d++) {
             calendarHtml += '<td>'
