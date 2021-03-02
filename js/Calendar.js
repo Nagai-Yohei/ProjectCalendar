@@ -3,7 +3,7 @@ const date = new Date()
 let year = date.getFullYear()
 let month = date.getMonth() + 1
 const config = {
-    show: 2,
+    show: 1,
 }
 const Index = {
     Sunday: 0,
@@ -56,8 +56,28 @@ function getLastMonthEventHtml(year, month, day) {
     return calendarHtml
 }
 
+function getNextYearMonth(year, month) {
+    if (month == 12) {
+        year++
+        month = 1
+    } else {
+        month++
+    }
+    return {year, month}
+}
+
+function getLastYearMonth(year, month) {
+    if (month == 1) {
+        year--
+        month = 12
+    } else {
+        month--
+    }
+    return {year, month}
+}
+
 function createCalendar(year, month) {
-    const weeks = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    const weeks = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     const startDate = new Date(year, month - 1, 1)
     const startDay = startDate.getDay()
     const endDate = new Date(year, month,  0)
@@ -66,7 +86,7 @@ function createCalendar(year, month) {
     const lastMonthEndDayCount = lastMonthEndDate.getDate()
     
     let dayCount = 1
-    let calendarHtml = '<h1>' + year + '/' + month + '</h1><table>'
+    let calendarHtml = '<div class="year-month">' + year + '/' + month + '</div><table>'
     let finishMonth = false
 
     for (let w = 0; ; w++) {
@@ -79,18 +99,20 @@ function createCalendar(year, month) {
             }
             if (w == 0 && d < startDay) {
                 let num = lastMonthEndDayCount - startDay + d + 1
+                let last = getLastYearMonth(year, month)
                 calendarHtml += '<div class="day-string '
                 calendarHtml += getHolidayClassTag(false)
                 calendarHtml += getOtherMonthClassTag(true)
-                calendarHtml += '">' + num + '</div>'
+                calendarHtml += '">' + last.year + '/' + last.month + '/' + num + '</div>'
                 calendarHtml += getLastMonthEventHtml(year, month, num)
                 dayCountUp = false
             } else if (dayCount > endDayCount) {
                 let num = dayCount - endDayCount
+                let next = getNextYearMonth(year, month)
                 calendarHtml += '<div class="day-string '
                 calendarHtml += getHolidayClassTag(false)
                 calendarHtml += getOtherMonthClassTag(true)
-                calendarHtml += '">' + num + '</div>'
+                calendarHtml += '">' + next.year + '/' + next.month + '/' + num + '</div>'
                 calendarHtml += getNextMonthEventHtml(year, month, num)
                 finishMonth = true
             } else if ((d === Index.Sunday) || (d === Index.Saturday)) {

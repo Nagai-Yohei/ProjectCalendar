@@ -7,17 +7,13 @@ section {
     margin: 10px;
 }
 
-h1 {
-    text-align: center;
-    font-size: 18px;
-}
-
 table {
     border-spacing: 0;
     border-collapse: collapse;
     width: 800px;
     table-layout: fixed;
     word-wrap: break-word;
+    font-size: 12px;
 }
 
 td {
@@ -25,53 +21,46 @@ td {
     padding: 5px;
     text-align: center;
     vertical-align: top;
-    width: 100px;
+    width: 200px;
     height: 100px;
 }
 
 button.calendar-button {
     border: 0;
-    border-radius: 50%;
-    background: #4676D7;
+    border-radius: 5px;
+    background: slategray;
     color: #fff;
-    padding: 10px 20px;
+    padding: 2px 20px;
     font-size: 20px;
 }
 
 button.calendar-button:hover {
-    background: #1d49aa;
+    background: gainsboro;
 }
 
 button.calendar-button:focus {
     outline: none;
-    box-shadow: 0 0 0 4px #cbd6ee;
 }
 
-.first-column {
-    font-size: 14px;
-    height: 20px;
+.year-month {
+    font-size: 18px;
 }
 
 .day-of-week-string {
-    color: #fff;
-    background-color: #4676D7;
 }
 
 .day-string {
-    font-size: 14px;
 }
 
 .event-string {
     font-size: 12px;
 }
 
-.category-A::before {
-    content: '-';
+.category-A {
     display: inline-block;
-    width: 20px;
-    height: 20px;
-    background: #fd8b8f;
-    border-radius: 10%;
+    width: 200px;
+    background: royalblue;
+    border-radius: 5px;
     margin-right: 5px;
     color: #ffffff;
     font-size: 12px;
@@ -80,13 +69,11 @@ button.calendar-button:focus {
     text-align: center;
 }
 
-.category-B::before {
-    content: 'B';
+.category-B {
     display: inline-block;
-    width: 20px;
-    height: 20px;
-    background: #ffbeda;
-    border-radius: 10%;
+    width: 200px;
+    background: yellowgreen;
+    border-radius: 5px;
     margin-right: 5px;
     color: #ffffff;
     font-size: 12px;
@@ -95,13 +82,11 @@ button.calendar-button:focus {
     text-align: center;
 }
 
-.category-C::before {
-    content: 'C';
+.category-C {
     display: inline-block;
-    width: 20px;
-    height: 20px;
-    background: #ffdbc9;
-    border-radius: 10%;
+    width: 200px;
+    background: tomato;
+    border-radius: 5px;
     margin-right: 5px;
     color: #ffffff;
     font-size: 12px;
@@ -110,13 +95,11 @@ button.calendar-button:focus {
     text-align: center;
 }
 
-.category-D::before {
-    content: 'D';
+.category-D {
     display: inline-block;
-    width: 20px;
-    height: 20px;
-    background: #aaffaa;
-    border-radius: 10%;
+    width: 200px;
+    background: aqua;
+    border-radius: 5px;
     margin-right: 5px;
     color: #ffffff;
     font-size: 12px;

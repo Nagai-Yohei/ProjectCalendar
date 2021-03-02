@@ -17,7 +17,7 @@ const EventDate = [
 
 const EventId = [
     {"refid":0, "dayafter":10, "milestone":"まいるすとーん1"},
-    {"refid":2, "dayafter":20, "milestone":"マイルストーン2"}
+    {"refid":2, "dayafter":20, "milestone":"マイルストーン2222"}
 ]
 
 // 以下は編集不要
