@@ -23,21 +23,12 @@ function getOtherMonthClassTag(isOtherMonth) {
     return isOtherMonth ? 'is-other-month ' : ''
 }
 
-function createCalendarInitialize(year, month, weeks) {
-    let calendarHtml = '<h1>' + year  + '/' + month + '</h1>'
-    calendarHtml += '<table>'
-    for (let i = 0; i < weeks.length; i++) {
-        calendarHtml += '<td class="first-column">' + weeks[i] + '</td>'
-    }
-    return calendarHtml
-}
-
 function getEventHtml(year, month, day) {
     let calendarHtml = ''
     for (let i = 0; i < Category.length; i++) {
         let eventHtml = getEvent(year, month, day, Category[i])
         if (eventHtml !== '') {
-            calendarHtml += '<div class="event-string category-' + Category[i] + '">[' + Category[i] + ']' + eventHtml + '</div>'
+            calendarHtml += '<div class="event-string category-' + Category[i] + '">' + eventHtml + '</div>'
         }
     }
     return calendarHtml
@@ -48,7 +39,7 @@ function getNextMonthEventHtml(year, month, day) {
     for (let i = 0; i < Category.length; i++) {
         let eventHtml = getNextMonthEvent(year, month, day, Category[i])
         if (eventHtml !== '') {
-            calendarHtml += '<div class="is-other-month event-string category-' + Category[i] + '">[' + Category[i] + ']' + eventHtml + '</div>'
+            calendarHtml += '<div class="is-other-month event-string category-' + Category[i] + '">' + eventHtml + '</div>'
         }
     }
     return calendarHtml
@@ -59,7 +50,7 @@ function getLastMonthEventHtml(year, month, day) {
     for (let i = 0; i < Category.length; i++) {
         let eventHtml = getLastMonthEvent(year, month, day, Category[i])
         if (eventHtml !== '') {
-            calendarHtml += '<div class="is-other-month event-string category-' + Category[i] + '">[' + Category[i] + ']'  + eventHtml + '</div>'
+            calendarHtml += '<div class="is-other-month event-string category-' + Category[i] + '">' + eventHtml + '</div>'
         }
     }
     return calendarHtml
@@ -75,16 +66,17 @@ function createCalendar(year, month) {
     const lastMonthEndDayCount = lastMonthEndDate.getDate()
     
     let dayCount = 1
-    let calendarHtml = ''
+    let calendarHtml = '<h1>' + year + '/' + month + '</h1><table>'
     let finishMonth = false
-    
-    calendarHtml += createCalendarInitialize(year, month, weeks)
-    
+
     for (let w = 0; ; w++) {
         calendarHtml += '<tr>'
         let dayCountUp = true
         for (let d = 0; d < weeks.length; d++) {
             calendarHtml += '<td>'
+            if (w == 0) {
+                calendarHtml += '<div class="day-of-week-string">' + weeks[d] + '</div>'
+            }
             if (w == 0 && d < startDay) {
                 let num = lastMonthEndDayCount - startDay + d + 1
                 calendarHtml += '<div class="day-string '

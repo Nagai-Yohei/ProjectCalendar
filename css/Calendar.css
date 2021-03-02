@@ -8,6 +8,7 @@ section {
 }
 
 h1 {
+    text-align: center;
     font-size: 18px;
 }
 
@@ -28,9 +29,32 @@ td {
     height: 100px;
 }
 
+button.calendar-button {
+    border: 0;
+    border-radius: 50%;
+    background: #4676D7;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 20px;
+}
+
+button.calendar-button:hover {
+    background: #1d49aa;
+}
+
+button.calendar-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px #cbd6ee;
+}
+
 .first-column {
     font-size: 14px;
     height: 20px;
+}
+
+.day-of-week-string {
+    color: #fff;
+    background-color: #4676D7;
 }
 
 .day-string {
@@ -42,27 +66,68 @@ td {
 }
 
 .category-A::before {
-    content: "◆";
-    color: red;
+    content: '-';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: #fd8b8f;
+    border-radius: 10%;
+    margin-right: 5px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px;
+    text-align: center;
 }
 
 .category-B::before {
-    content: "◆";
-    color: blue;
+    content: 'B';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: #ffbeda;
+    border-radius: 10%;
+    margin-right: 5px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px;
+    text-align: center;
 }
 
 .category-C::before {
-    content: "◆";
-    color: orange;
+    content: 'C';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: #ffdbc9;
+    border-radius: 10%;
+    margin-right: 5px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px;
+    text-align: center;
 }
 
 .category-D::before {
-    content: "◆";
-    color: green;
+    content: 'D';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: #aaffaa;
+    border-radius: 10%;
+    margin-right: 5px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px;
+    text-align: center;
 }
 
 .is-other-month {
     color: #ccc;
+    background: white;
 }
 
 .is-holiday {
