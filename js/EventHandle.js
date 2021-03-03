@@ -52,7 +52,7 @@ function getEventHtml(year, month, day) {
     for (let i = 0; i < Category.length; i++) {
         let eventHtml = getEvent(year, month, day, Category[i])
         if (eventHtml !== '') {
-            calendarHtml += '<div class="event-string category-' + Category[i] + '">' + eventHtml + '</div>'
+            calendarHtml += '<div class="event-string category cat-' + Category[i] + '">' + eventHtml + '</div>'
         }
     }
     return calendarHtml
@@ -63,7 +63,7 @@ function getNextMonthEventHtml(year, month, day) {
     for (let i = 0; i < Category.length; i++) {
         let eventHtml = getNextMonthEvent(year, month, day, Category[i])
         if (eventHtml !== '') {
-            calendarHtml += '<div class="is-other-month event-string category-' + Category[i] + '">' + eventHtml + '</div>'
+            calendarHtml += '<div class="is-other-month event-string category cat-' + Category[i] + '">' + eventHtml + '</div>'
         }
     }
     return calendarHtml
@@ -74,7 +74,7 @@ function getLastMonthEventHtml(year, month, day) {
     for (let i = 0; i < Category.length; i++) {
         let eventHtml = getLastMonthEvent(year, month, day, Category[i])
         if (eventHtml !== '') {
-            calendarHtml += '<div class="is-other-month event-string category-' + Category[i] + '">' + eventHtml + '</div>'
+            calendarHtml += '<div class="is-other-month event-string category cat-' + Category[i] + '">' + eventHtml + '</div>'
         }
     }
     return calendarHtml

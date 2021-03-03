@@ -55,5 +55,5 @@ const Workday = [
 ]
 
 const config = {
-    show: 1,
+    show: 2,
 }

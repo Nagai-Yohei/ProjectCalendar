@@ -4,7 +4,7 @@
 }
 
 section {
-    margin: 10px;
+    margin: 5px;
 }
 
 table {
@@ -21,8 +21,8 @@ td {
     padding: 5px;
     text-align: center;
     vertical-align: top;
-    width: 200px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
 }
 
 button.calendar-button {
@@ -56,56 +56,32 @@ button.calendar-button:focus {
     font-size: 12px;
 }
 
-.category-A {
+.category {
     display: inline-block;
-    width: 200px;
+    width: 120px;
+    border-radius: 5px;
+    margin-right: 5px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px;
+    text-align: center;
+}
+
+.cat-A {
     background: royalblue;
-    border-radius: 5px;
-    margin-right: 5px;
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: bold;
-    line-height: 20px;
-    text-align: center;
 }
 
-.category-B {
-    display: inline-block;
-    width: 200px;
+.cat-B {
     background: yellowgreen;
-    border-radius: 5px;
-    margin-right: 5px;
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: bold;
-    line-height: 20px;
-    text-align: center;
 }
 
-.category-C {
-    display: inline-block;
-    width: 200px;
+.cat-C {
     background: tomato;
-    border-radius: 5px;
-    margin-right: 5px;
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: bold;
-    line-height: 20px;
-    text-align: center;
 }
 
-.category-D {
-    display: inline-block;
-    width: 200px;
+.cat-D {
     background: darkturquoise;
-    border-radius: 5px;
-    margin-right: 5px;
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: bold;
-    line-height: 20px;
-    text-align: center;
 }
 
 .is-other-month {
