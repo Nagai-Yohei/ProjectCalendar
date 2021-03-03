@@ -7,9 +7,3 @@ const Index = {
     Friday: 5,
     Saturday: 6,
 }
-const Category = [
-    'A',
-    'B',
-    'C',
-    'D'
-]
