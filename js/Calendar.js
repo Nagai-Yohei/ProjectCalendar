@@ -1,18 +1,21 @@
-
 const date = new Date()
 let year = date.getFullYear()
 let month = date.getMonth() + 1
-const config = {
-    show: 1,
+
+function isHoliday(year, month, day) {
+    let ret = false
+    for (let i = 0; i < Holiday.length; i++) {
+        ret = ret || (Holiday[i].year === year && Holiday[i].month === month && Holiday[i].day === day)
+    }
+    return ret
 }
-const Index = {
-    Sunday: 0,
-    Monday: 1,
-    Tuesday: 2,
-    Wednesday: 3,
-    Thursday: 4,
-    Friday: 5,
-    Saturday: 6,
+
+function isWorkDay(year, month, day) {
+    let ret = false
+    for (let i = 0; i < Workday.length; i++) {
+        ret = ret || (Workday[i].year === year && Workday[i].month === month && Workday[i].day === day)
+    }
+    return ret
 }
 
 function getHolidayClassTag(isHoliday) {
@@ -21,39 +24,6 @@ function getHolidayClassTag(isHoliday) {
 
 function getOtherMonthClassTag(isOtherMonth) {
     return isOtherMonth ? 'is-other-month ' : ''
-}
-
-function getEventHtml(year, month, day) {
-    let calendarHtml = ''
-    for (let i = 0; i < Category.length; i++) {
-        let eventHtml = getEvent(year, month, day, Category[i])
-        if (eventHtml !== '') {
-            calendarHtml += '<div class="event-string category-' + Category[i] + '">' + eventHtml + '</div>'
-        }
-    }
-    return calendarHtml
-}
-
-function getNextMonthEventHtml(year, month, day) {
-    let calendarHtml = ''
-    for (let i = 0; i < Category.length; i++) {
-        let eventHtml = getNextMonthEvent(year, month, day, Category[i])
-        if (eventHtml !== '') {
-            calendarHtml += '<div class="is-other-month event-string category-' + Category[i] + '">' + eventHtml + '</div>'
-        }
-    }
-    return calendarHtml
-}
-
-function getLastMonthEventHtml(year, month, day) {
-    let calendarHtml = ''
-    for (let i = 0; i < Category.length; i++) {
-        let eventHtml = getLastMonthEvent(year, month, day, Category[i])
-        if (eventHtml !== '') {
-            calendarHtml += '<div class="is-other-month event-string category-' + Category[i] + '">' + eventHtml + '</div>'
-        }
-    }
-    return calendarHtml
 }
 
 function getNextYearMonth(year, month) {

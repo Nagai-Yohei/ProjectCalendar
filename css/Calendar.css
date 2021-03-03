@@ -28,14 +28,14 @@ td {
 button.calendar-button {
     border: 0;
     border-radius: 5px;
-    background: slategray;
+    background: gainsboro;
     color: #fff;
     padding: 2px 20px;
     font-size: 20px;
 }
 
 button.calendar-button:hover {
-    background: gainsboro;
+    background: ghostwhite;
 }
 
 button.calendar-button:focus {
@@ -98,7 +98,7 @@ button.calendar-button:focus {
 .category-D {
     display: inline-block;
     width: 200px;
-    background: aqua;
+    background: darkturquoise;
     border-radius: 5px;
     margin-right: 5px;
     color: #ffffff;
