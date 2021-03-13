@@ -161,10 +161,16 @@ function moveCalendar(e) {
             month = 1
         }
     }
+    if (e.target.id === 'today') {
+        let today = new Date();
+        year = today.getFullYear();
+        month = today.getMonth() + 1;
+    }
     showCalendar(year, month)
 }
 
 document.querySelector('#prev').addEventListener('click', moveCalendar)
 document.querySelector('#next').addEventListener('click', moveCalendar)
+document.querySelector('#today').addEventListener('click', moveCalendar)
 
 showCalendar(year, month)

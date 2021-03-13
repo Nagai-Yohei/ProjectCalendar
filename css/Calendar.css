@@ -28,14 +28,13 @@ td {
 button.calendar-button {
     border: 0;
     border-radius: 5px;
-    background: gainsboro;
+    background: darkgray;
     color: #fff;
     padding: 2px 20px;
-    font-size: 20px;
 }
 
 button.calendar-button:hover {
-    background: ghostwhite;
+    background: silver;
 }
 
 button.calendar-button:focus {
@@ -68,31 +67,31 @@ button.calendar-button:focus {
     text-align: center;
 }
 
-.cat-A {
+.cat0 {
     background: skyblue;
 }
 
-.cat-B {
+.cat1 {
     background: yellowgreen;
 }
 
-.cat-C {
+.cat2 {
     background: moccasin;
 }
 
-.cat-D {
+.cat3 {
     background: turquoise;
 }
 
-.cat-E {
+.cat4 {
     background-color: pink;
 }
 
-.cat-F {
+.cat5 {
     background-color: thistle;
 }
 
-.cat-G {
+.cat6 {
     background-color: silver;
 }
 

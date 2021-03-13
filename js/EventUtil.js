@@ -37,7 +37,7 @@ function generateEvent(evDate, evId) {
             if (evDate[j].id === evId[i].refid) {
                 let td = new Date(evDate[j].year, evDate[j].month - 1, evDate[j].day)
                 td.setDate(td.getDate() + evId[i].dayafter)
-                let te = {"id":newId, "year":td.getFullYear(), "month":td.getMonth() + 1, "day":td.getDate(), "category":evDate[j].category, "milestone":evId[i].milestone}
+                let te = {"id":newId, "year":td.getFullYear(), "month":td.getMonth() + 1, "day":td.getDate(), "category":j, "milestone":evId[i].milestone}
                 ev.push(te)
                 newId++
             }
@@ -49,9 +49,9 @@ function generateEvent(evDate, evId) {
 function getEventHtml(year, month, day) {
     let calendarHtml = ''
     for (let i = 0; i < Category.length; i++) {
-        let eventHtml = getEvent(year, month, day, Category[i])
+        let eventHtml = getEvent(year, month, day, i)
         if (eventHtml !== '') {
-            calendarHtml += '<div class="event-string category cat-' + Category[i] + '">' + eventHtml + '</div>'
+            calendarHtml += '<div class="event-string category cat' + i + '">' + eventHtml + '</div>'
         }
     }
     return calendarHtml
@@ -60,9 +60,9 @@ function getEventHtml(year, month, day) {
 function getNextMonthEventHtml(year, month, day) {
     let calendarHtml = ''
     for (let i = 0; i < Category.length; i++) {
-        let eventHtml = getNextMonthEvent(year, month, day, Category[i])
+        let eventHtml = getNextMonthEvent(year, month, day, i)
         if (eventHtml !== '') {
-            calendarHtml += '<div class="is-other-month event-string category cat-' + Category[i] + '">' + eventHtml + '</div>'
+            calendarHtml += '<div class="is-other-month event-string category cat' + i + '">' + eventHtml + '</div>'
         }
     }
     return calendarHtml
@@ -71,9 +71,9 @@ function getNextMonthEventHtml(year, month, day) {
 function getLastMonthEventHtml(year, month, day) {
     let calendarHtml = ''
     for (let i = 0; i < Category.length; i++) {
-        let eventHtml = getLastMonthEvent(year, month, day, Category[i])
+        let eventHtml = getLastMonthEvent(year, month, day, i)
         if (eventHtml !== '') {
-            calendarHtml += '<div class="is-other-month event-string category cat-' + Category[i] + '">' + eventHtml + '</div>'
+            calendarHtml += '<div class="is-other-month event-string category cat' + i + '">' + eventHtml + '</div>'
         }
     }
     return calendarHtml
