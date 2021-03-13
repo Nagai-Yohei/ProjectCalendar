@@ -1,11 +1,11 @@
 const Category = [
-    'Category name 0',
-    'Category name 1',
-    'Category name 2',
-    'Category name 3',
-    'Category name 4',
-    'Category name 5',
-    'Category name 6'
+    'category name 0',
+    'category name 1',
+    'category name 2',
+    'category name 3',
+    'category name 4',
+    'category name 5',
+    'category name 6'
 ]
 
 const EventDate = [

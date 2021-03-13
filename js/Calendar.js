@@ -153,7 +153,6 @@ function createCalendar(year, month) {
     const endDayCount = endDate.getDate()
     const lastMonthEndDate = new Date(year, month-1, 0)
     const lastMonthEndDayCount = lastMonthEndDate.getDate()
-    const today = new Date();
     
     let dayCount = 1
     let calendarHtml = '<div class="year-month">' + year + '/' + month + '</div><table class="calendar-table">'
@@ -165,12 +164,12 @@ function createCalendar(year, month) {
         for (let d = 0; d < weeks.length; d++) {
             calendarHtml += '<td class="calendar-td">'
             if (w == 0) {
-                calendarHtml += '<div class="day-of-week-string">' + weeks[d] + '</div>'
+                calendarHtml += '<div class="week">' + weeks[d] + '</div>'
             }
             if (w == 0 && d < startDay) {
                 let num = lastMonthEndDayCount - startDay + d + 1
                 let last = getLastYearMonth(year, month)
-                calendarHtml += '<div class="day-string '
+                calendarHtml += '<div class="'
                 calendarHtml += getHolidayClassTag(false)
                 calendarHtml += getOtherMonthClassTag(true)
                 calendarHtml += '">' + last.year + '/' + last.month + '/' + num + '</div>'
@@ -179,21 +178,21 @@ function createCalendar(year, month) {
             } else if (dayCount > endDayCount) {
                 let num = dayCount - endDayCount
                 let next = getNextYearMonth(year, month)
-                calendarHtml += '<div class="day-string '
+                calendarHtml += '<div class="'
                 calendarHtml += getHolidayClassTag(false)
                 calendarHtml += getOtherMonthClassTag(true)
                 calendarHtml += '">' + next.year + '/' + next.month + '/' + num + '</div>'
                 calendarHtml += getNextMonthEventHtml(year, month, num)
                 finishMonth = true
             } else if ((d === Index.Sunday) || (d === Index.Saturday)) {
-                calendarHtml += '<div class="day-string '
+                calendarHtml += '<div class="'
                 calendarHtml += getHolidayClassTag(!isWorkDay(year, month, dayCount))
                 calendarHtml += getOtherMonthClassTag(false)
                 calendarHtml += getTodayClassTag(isToday(year, month, dayCount))
                 calendarHtml += '">' + dayCount + '</div>'
                 calendarHtml += getEventHtml(year, month, dayCount)
             } else {
-                calendarHtml += '<div class="day-string '
+                calendarHtml += '<div class="'
                 calendarHtml += getHolidayClassTag(isHoliday(year, month, dayCount))
                 calendarHtml += getOtherMonthClassTag(false)
                 calendarHtml += getTodayClassTag(isToday(year, month, dayCount))

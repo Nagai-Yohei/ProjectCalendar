@@ -17,7 +17,7 @@ table.calendar-table {
 }
 
 td.calendar-td {
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     padding: 5px;
     text-align: center;
     vertical-align: top;
@@ -41,14 +41,17 @@ button.calendar-button:focus {
     outline: none;
 }
 
+.week {
+    font-weight: bold;
+    color: darkgray;
+}
+
 .year-month {
-    font-size: 18px;
-}
-
-.day-of-week-string {
-}
-
-.day-string {
+    font-weight: bold;
+    font-size: 19px;
+    color: whitesmoke;
+    background-color: darkgray;
+    padding: 0px 20px;
 }
 
 .event-string {
@@ -72,6 +75,7 @@ ul, ol {
     padding: 0;
     position: relative;
     font-size: 12px;
+    color: darkgray;
 }
 
 ul li, ol li {
@@ -98,10 +102,10 @@ li.cat1-name {
 }
 
 .cat2 {
-    background: moccasin;
+    background: peachpuff;
 }
 li.cat2-name {
-    border-left: solid 8px moccasin;
+    border-left: solid 8px peachpuff;
 }
 
 .cat3 {
