@@ -7,7 +7,7 @@ section {
     margin: 5px;
 }
 
-table {
+table.calendar-table {
     border-spacing: 0;
     border-collapse: collapse;
     width: 800px;
@@ -16,7 +16,7 @@ table {
     font-size: 12px;
 }
 
-td {
+td.calendar-td {
     border: 1px solid #ddd;
     padding: 5px;
     text-align: center;
@@ -67,32 +67,69 @@ button.calendar-button:focus {
     text-align: center;
 }
 
+ul, ol {
+    display: inline-block;
+    padding: 0;
+    position: relative;
+    font-size: 12px;
+}
+
+ul li, ol li {
+    display: inline-block;
+    line-height: 1.5;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 3px;
+    list-style-type: none!important;
+}
+
 .cat0 {
     background: skyblue;
+}
+li.cat0-name {
+    border-left: solid 8px skyblue;
 }
 
 .cat1 {
     background: yellowgreen;
 }
+li.cat1-name {
+    border-left: solid 8px yellowgreen;
+}
 
 .cat2 {
     background: moccasin;
+}
+li.cat2-name {
+    border-left: solid 8px moccasin;
 }
 
 .cat3 {
     background: turquoise;
 }
+li.cat3-name {
+    border-left: solid 8px turquoise;
+}
 
 .cat4 {
     background-color: pink;
+}
+li.cat4-name {
+    border-left: solid 8px pink;
 }
 
 .cat5 {
     background-color: thistle;
 }
+li.cat5-name {
+    border-left: solid 8px thistle;
+}
 
 .cat6 {
     background-color: silver;
+}
+li.cat6-name {
+    border-left: solid 8px silver;
 }
 
 .is-other-month {
@@ -107,6 +144,7 @@ button.calendar-button:focus {
 
 .is-today {
     font-weight: bold;
-    color: blue;
+    color: steelblue;
     background-color: lightblue;
+    border-radius: 30px;
 }

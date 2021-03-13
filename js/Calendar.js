@@ -66,14 +66,14 @@ function createCalendar(year, month) {
     const today = new Date();
     
     let dayCount = 1
-    let calendarHtml = '<div class="year-month">' + year + '/' + month + '</div><table>'
+    let calendarHtml = '<div class="year-month">' + year + '/' + month + '</div><table class="calendar-table">'
     let finishMonth = false
 
     for (let w = 0; ; w++) {
         calendarHtml += '<tr>'
         let dayCountUp = true
         for (let d = 0; d < weeks.length; d++) {
-            calendarHtml += '<td>'
+            calendarHtml += '<td class="calendar-td">'
             if (w == 0) {
                 calendarHtml += '<div class="day-of-week-string">' + weeks[d] + '</div>'
             }
