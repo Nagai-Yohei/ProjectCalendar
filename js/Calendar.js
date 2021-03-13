@@ -26,6 +26,15 @@ function getOtherMonthClassTag(isOtherMonth) {
     return isOtherMonth ? 'is-other-month ' : ''
 }
 
+function getTodayClassTag(isToday) {
+    return isToday ? 'is-today ' : ''
+}
+
+function isToday(year, month, day) {
+    let today = new Date();
+    return (year === today.getFullYear() && month === (today.getMonth() + 1) && day === today.getDate())
+}
+
 function getNextYearMonth(year, month) {
     if (month == 12) {
         year++
@@ -54,6 +63,7 @@ function createCalendar(year, month) {
     const endDayCount = endDate.getDate()
     const lastMonthEndDate = new Date(year, month-1, 0)
     const lastMonthEndDayCount = lastMonthEndDate.getDate()
+    const today = new Date();
     
     let dayCount = 1
     let calendarHtml = '<div class="year-month">' + year + '/' + month + '</div><table>'
@@ -89,12 +99,14 @@ function createCalendar(year, month) {
                 calendarHtml += '<div class="day-string '
                 calendarHtml += getHolidayClassTag(!isWorkDay(year, month, dayCount))
                 calendarHtml += getOtherMonthClassTag(false)
+                calendarHtml += getTodayClassTag(isToday(year, month, dayCount))
                 calendarHtml += '">' + dayCount + '</div>'
                 calendarHtml += getEventHtml(year, month, dayCount)
             } else {
                 calendarHtml += '<div class="day-string '
                 calendarHtml += getHolidayClassTag(isHoliday(year, month, dayCount))
                 calendarHtml += getOtherMonthClassTag(false)
+                calendarHtml += getTodayClassTag(isToday(year, month, dayCount))
                 calendarHtml += '">' + dayCount + '</div>'
                 calendarHtml += getEventHtml(year, month, dayCount)
             }

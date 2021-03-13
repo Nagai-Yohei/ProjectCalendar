@@ -1,10 +1,3 @@
-const Category = [
-    'A',
-    'B',
-    'C',
-    'D'
-]
-
 function getEvent(year, month, day, category) {
     let ret = ''
     for (let i = 0; i < Events.length; i++) {

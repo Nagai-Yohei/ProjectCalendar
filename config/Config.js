@@ -1,16 +1,26 @@
+const Category = [
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G'
+]
+
 const EventDate = [
-    {"id":0, "year":2021, "month":2, "day":5, "category":'A', "milestone":"ほげ"},
-    {"id":1, "year":2021, "month":2, "day":10, "category":'B', "milestone":"ふが"},
-    {"id":2, "year":2021, "month":2, "day":25, "category":'C', "milestone":"foo"},
-    {"id":3, "year":2021, "month":2, "day":26, "category":'A', "milestone":"hoge"},
-    {"id":4, "year":2021, "month":2, "day":28, "category":'A', "milestone":"ほげ"},
-    {"id":5, "year":2021, "month":3, "day":5, "category":'B', "milestone":"ふが"},
-    {"id":6, "year":2021, "month":3, "day":25, "category":'A', "milestone":"foo"},
-    {"id":7, "year":2021, "month":3, "day":26, "category":'D', "milestone":"hoge"},
-    {"id":8, "year":2021, "month":2, "day":25, "category":'A', "milestone":"ほげ"},
-    {"id":9, "year":2021, "month":3, "day":1, "category":'B', "milestone":"ふが"},
-    {"id":10, "year":2021, "month":3, "day":24, "category":'C', "milestone":"foo"},
-    {"id":11, "year":2021, "month":4, "day":26, "category":'D', "milestone":"hoge"},
+    {"id":0, "year":2021, "month":3, "day":5, "category":'A', "milestone":"ほげ"},
+    {"id":1, "year":2021, "month":3, "day":10, "category":'B', "milestone":"ふが"},
+    {"id":2, "year":2021, "month":3, "day":25, "category":'C', "milestone":"foo"},
+    {"id":3, "year":2021, "month":3, "day":26, "category":'D', "milestone":"hoge"},
+    {"id":4, "year":2021, "month":3, "day":28, "category":'E', "milestone":"ほげ"},
+    {"id":5, "year":2021, "month":4, "day":5, "category":'F', "milestone":"ふが"},
+    {"id":6, "year":2021, "month":4, "day":25, "category":'G', "milestone":"foo"},
+    {"id":7, "year":2021, "month":4, "day":26, "category":'D', "milestone":"hoge"},
+    {"id":8, "year":2021, "month":4, "day":25, "category":'A', "milestone":"ほげ"},
+    {"id":9, "year":2021, "month":4, "day":1, "category":'B', "milestone":"ふが"},
+    {"id":10, "year":2021, "month":4, "day":24, "category":'C', "milestone":"foo"},
+    {"id":11, "year":2021, "month":5, "day":26, "category":'D', "milestone":"hoge"},
     {"id":12, "year":2021, "month":1, "day":1, "category":'D', "milestone":"hoge"},
     {"id":13, "year":2020, "month":12, "day":31, "category":'A', "milestone":"1231"}
 ]

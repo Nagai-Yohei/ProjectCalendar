@@ -69,7 +69,7 @@ button.calendar-button:focus {
 }
 
 .cat-A {
-    background: royalblue;
+    background: skyblue;
 }
 
 .cat-B {
@@ -77,11 +77,23 @@ button.calendar-button:focus {
 }
 
 .cat-C {
-    background: tomato;
+    background: moccasin;
 }
 
 .cat-D {
-    background: darkturquoise;
+    background: turquoise;
+}
+
+.cat-E {
+    background-color: pink;
+}
+
+.cat-F {
+    background-color: thistle;
+}
+
+.cat-G {
+    background-color: silver;
 }
 
 .is-other-month {
@@ -92,4 +104,10 @@ button.calendar-button:focus {
 .is-holiday {
     color: red;
     background-color: #ffeeee;
+}
+
+.is-today {
+    font-weight: bold;
+    color: blue;
+    background-color: lightblue;
 }
