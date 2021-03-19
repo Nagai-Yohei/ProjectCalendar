@@ -150,11 +150,11 @@ function getLastYearMonth(year, month) {
     return {year, month}
 }
 
-function over(x) {
+function mouseOverCell(x) {
     x.style.backgroundColor="whitesmoke"
 }
 
-function leave(x) {
+function mouseLeaveCell(x) {
     x.style.backgroundColor="white"
 }
 
@@ -175,7 +175,7 @@ function createCalendar(year, month) {
         calendarHtml += '<tr>'
         let dayCountUp = true
         for (let d = 0; d < weeks.length; d++) {
-            calendarHtml += '<td class="calendar-td" onmouseover="over(this)" onmouseleave="leave(this)">'
+            calendarHtml += '<td class="calendar-td" onmouseover="mouseOverCell(this)" onmouseleave="mouseLeaveCell(this)">'
             if (w == 0) {
                 calendarHtml += '<div class="week">' + weeks[d] + '</div>'
             }
