@@ -150,6 +150,14 @@ function getLastYearMonth(year, month) {
     return {year, month}
 }
 
+function over(x) {
+    x.style.backgroundColor="whitesmoke"
+}
+
+function leave(x) {
+    x.style.backgroundColor="white"
+}
+
 function createCalendar(year, month) {
     const weeks = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     const startDate = new Date(year, month - 1, 1)
@@ -167,7 +175,7 @@ function createCalendar(year, month) {
         calendarHtml += '<tr>'
         let dayCountUp = true
         for (let d = 0; d < weeks.length; d++) {
-            calendarHtml += '<td class="calendar-td">'
+            calendarHtml += '<td class="calendar-td" onmouseover="over(this)" onmouseleave="leave(this)">'
             if (w == 0) {
                 calendarHtml += '<div class="week">' + weeks[d] + '</div>'
             }
