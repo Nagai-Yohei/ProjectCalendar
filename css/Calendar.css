@@ -17,7 +17,7 @@ table.calendar-table {
 }
 
 td.calendar-td {
-    border: 2px solid #ddd;
+    border: 2px solid #ccc;
     padding: 5px;
     text-align: center;
     vertical-align: top;
@@ -28,7 +28,7 @@ td.calendar-td {
 button.calendar-button {
     border: 0;
     border-radius: 5px;
-    background: darkgray;
+    background: dimgray;
     color: #fff;
     padding: 2px 20px;
 }
@@ -43,14 +43,14 @@ button.calendar-button:focus {
 
 .week {
     font-weight: bold;
-    color: darkgray;
+    color: dimgray;
 }
 
 .year-month {
     font-weight: bold;
     font-size: 19px;
     color: whitesmoke;
-    background-color: darkgray;
+    background-color: dimgray;
     padding: 0px 20px;
 }
 
@@ -61,13 +61,15 @@ button.calendar-button:focus {
 .category {
     display: inline-block;
     width: 120px;
-    border-radius: 5px;
+    border-radius: 8px;
     margin-right: 5px;
     color: #ffffff;
     font-size: 12px;
     font-weight: bold;
     line-height: 20px;
     text-align: center;
+    border: medium solid white;
+    border-width: 1px;
 }
 
 ul, ol {
@@ -75,7 +77,7 @@ ul, ol {
     padding: 0;
     position: relative;
     font-size: 12px;
-    color: darkgray;
+    color: dimgray;
 }
 
 ul li, ol li {
@@ -130,10 +132,10 @@ li.cat5-name {
 }
 
 .cat6 {
-    background-color: silver;
+    background-color: darkgray;
 }
 li.cat6-name {
-    border-left: solid 8px silver;
+    border-left: solid 8px darkgray;
 }
 
 .is-other-month {

@@ -10,7 +10,7 @@ const Category = [
 
 const EventDate = [
     {"id":0, "year":2021, "month":3, "day":5, "category":0, "milestone":"ほげ"},
-    {"id":1, "year":2021, "month":3, "day":10, "category":1, "milestone":"ふが"},
+    {"id":1, "year":2021, "month":3, "day":5, "category":0, "milestone":"ふが"},
     {"id":2, "year":2021, "month":3, "day":25, "category":2, "milestone":"foo"},
     {"id":3, "year":2021, "month":3, "day":26, "category":3, "milestone":"hoge"},
     {"id":4, "year":2021, "month":3, "day":28, "category":4, "milestone":"ほげ"},
